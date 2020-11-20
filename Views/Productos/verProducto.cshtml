@@ -1,0 +1,12 @@
+@model Producto
+
+@section Styles {
+    <link href="@Url.Content("~/css/productos/verProducto.css")" rel="stylesheet" type="text/css" />
+}
+
+<h1>@Model.Nombre</h1>
+
+<img src='@("../img/productos/"+Model.Id+".jpg")' alt="productoFoto">
+<h4>Marca: @Model.Marca</h4>
+<h4>Modelo: @Model.Modelo</h4>
+<h4>@Model.Precio</h4>

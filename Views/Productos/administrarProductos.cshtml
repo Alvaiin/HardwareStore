@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<Producto>
+
+@section Styles {
+    <link href="@Url.Content("~/css/productos/administrarProductos.css")" rel="stylesheet" type="text/css" />
+}
+
+
+<form action="@Url.Action("NuevoProducto","Productos")" method="post" enctype="multipart/form-data">
+    <label for="Nombre">Nombre</label>
+    <input type="text" name="Nombre">
+
+    <label for="Tipo">Tipo</label>
+    <select name="Tipo" asp-items="Html.GetEnumSelectList<TipoProducto>()">
+    </select>
+
+    <label for="Modelo">Modelo</label>
+    <input type="text" name="Modelo">
+
+    <label for="Marca">Marca</label>
+    <select name="Marca" asp-items="Html.GetEnumSelectList<Marca>()">
+    </select>
+
+    <label for="Precio">Precio</label>
+    <input type="number" name="Precio">
+
+    <label for="Imagen">Imagen</label>
+    <input type="file" name="Imagen">
+
+    <input type="submit" value="Agregar">
+</form>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Modelo</th>
+        <th>Marca</th>
+        <th>Precio</th>
+    </tr>
+    @foreach (Producto producto in Model)
+    {
+    <tr>
+        <td>@producto.Id</td>
+        <td>@producto.Nombre</td>
+        <td>@producto.Tipo</td>
+        <td>@producto.Modelo</td>
+        <td>@producto.Marca</td>
+        <td>@producto.Precio</td>
+        <td>
+        <form action="@Url.Action("EliminarProducto","Productos")" method="post">
+            <input type="hidden" value="@producto.Id" name="Id" />
+            <input type="submit" value="Eliminar">
+        </form>
+        </td>
+         
+    </tr>
+    }
+</table>

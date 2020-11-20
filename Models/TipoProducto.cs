@@ -6,9 +6,6 @@ public enum TipoProducto{
     Memoria,
     Gabinete,
     Refrigeracion,
-    Periferico,
-    Mouse,
-    Teclado,
-    Monitor
+    Periferico
 
 }

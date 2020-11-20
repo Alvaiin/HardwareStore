@@ -18,5 +18,8 @@ namespace hardStore.Models{
         public String Modelo { get; set; }
 
         public Marca Marca { get; set; }
+
+        public double Precio { get; set; }
+
     }
 }

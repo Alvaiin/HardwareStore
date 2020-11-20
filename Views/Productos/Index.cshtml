@@ -3,12 +3,41 @@
 *@
 
 @model List<Producto>
-@{
+    
+@section Styles {
+    <link href="@Url.Content("~/css/productos/productos.css")" rel="stylesheet" type="text/css" />
 }
 
-<h1> Index de Producto</h1>
 
-    @foreach(Producto producto in Model)
-    { 
 
-    }
+<h1>Productos</h1>
+<div class="row">
+    <aside class="col-2 mx-4">
+        <h5>Filtros</h5>
+        <ul>
+            <li>
+                Perifericos
+            </li>
+            <li>
+                Hardware
+            </li>
+            <li>
+                Accesorios
+            </li>
+        </ul>
+    </aside>
+    <ul class="productos_mostrados col-8">
+        <div class="row">
+            @foreach (Producto producto in Model)
+            {
+            <li class="producto col-2 m-2">
+                <a href='@("Productos/VerProducto?Id="+producto.Id)'>
+                    <h5>@producto.Nombre</h5>
+                    <img src='@Url.Content("~/img/productos/"+producto.Id+".jpg")' alt="productoFoto">
+                    <h6>$ @producto.Precio</h6>
+                </a>
+            </li>
+            }
+        </div>
+    </ul>
+</div>

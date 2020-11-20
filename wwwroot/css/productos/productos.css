@@ -1,0 +1,28 @@
+.producto{
+    display: inline-block;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+    transition: 0.25s;
+}
+
+.producto a{
+    color: black;
+}
+
+.producto a:hover{
+    text-decoration: none;
+}
+
+.producto:hover{
+    border-color: black;
+}
+
+.producto img{
+    width: 100%;
+}
+
+.productos_mostrados{
+    width: auto;
+    list-style: none;
+}
