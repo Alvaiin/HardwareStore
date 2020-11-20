@@ -52,12 +52,31 @@
         <td>@producto.Marca</td>
         <td>@producto.Precio</td>
         <td>
-        <form action="@Url.Action("EliminarProducto","Productos")" method="post">
-            <input type="hidden" value="@producto.Id" name="Id" />
-            <input type="submit" value="Eliminar">
-        </form>
+            <form action="@Url.Action("EliminarProducto","Productos")" method="post">
+                <input type="hidden" value="@producto.Id" name="IdProducto" />
+                <input type="button" value="Eliminar" data-toggle="modal" data-target='@("#confirmModal"+producto.Id)'>
+                <div class="modal fade" id='@("confirmModal"+producto.Id)' tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmModalLabel">Eliminar producto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Desea eliminar el producto con Id @producto.Id?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary">Si</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </td>
          
     </tr>
     }
+    
 </table>

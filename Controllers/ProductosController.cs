@@ -59,8 +59,8 @@ namespace hardStore.Controllers
             return RedirectToAction("administrarProductos");
         }
 
-        public IActionResult EliminarProducto(long Id){
-            Producto producto = db.Productos.Find(Id);
+        public IActionResult EliminarProducto(long IdProducto){
+            Producto producto = db.Productos.Find(IdProducto);
             db.Productos.Remove(producto);
             db.SaveChanges();
             return RedirectToAction("administrarProductos");
