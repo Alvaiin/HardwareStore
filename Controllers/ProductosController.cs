@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using hardStore.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 
@@ -37,14 +37,14 @@ namespace hardStore.Controllers
 
             if (!String.IsNullOrEmpty(buscado))
             {
-                productos = productos.Where(p => p.Nombre.Contains(buscado));
+                productos = productos.Where(p => EF.Functions.Like(p.Nombre,$"%{buscado}%"));
             }
             return View("Index",productos.ToList());
         }
         public IActionResult NuevoProducto(String nombre,TipoProducto tipo, String modelo,Marca marca, double precio, IFormFile Imagen)
         {
             if (!Imagen.ContentType.Equals("image/jpeg")) //Si el archivo cargado no es JPEG, vuelvo con error
-                return RedirectToAction("agregarProducto");
+                return RedirectToAction("administrarProductos");
 
             Producto producto = new Producto { Nombre = nombre, Tipo = tipo, Modelo = modelo, Marca = marca, Precio = precio };
             db.Productos.Add(producto);
