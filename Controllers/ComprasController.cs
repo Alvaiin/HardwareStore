@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using hardStore.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,11 +20,25 @@ namespace hardStore.Controllers
             Environment = _environment;
         }
 
-        public IActionResult AgregarAlCarrito(Producto producto){
-            return View("Index");
+        public IActionResult AgregarAlCarrito(long Id){
+            List<Producto> carrito = HttpContext.Session.Get<List<Producto>>("Carrito");
+            if(carrito == null)
+                carrito = new List<Producto>();
+            
+            carrito.Add(db.Productos.Find(Id));
+            HttpContext.Session.Set<List<Producto>>("Carrito",carrito);
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Index(){
+            List<Producto> carrito = HttpContext.Session.Get<List<Producto>>("Carrito");
+            if(carrito == null)
+                carrito = new List<Producto>();
+            return(View(carrito));
+        }
+
+        public IActionResult FinalizarCompra(){
             return View();
         }
 

@@ -9,4 +9,18 @@
 }
 
 <h2>Carrito</h2>
-<h5>Total: $</h5>
+
+@{
+    double total = 0;
+    foreach (Producto producto in Model)
+    {
+        <h3> @producto.Nombre @producto.Modelo @producto.Marca $ @producto.Precio </h3>
+        total += producto.Precio;
+    }
+}
+
+<h5>Total: $ @total</h5>
+
+<form action="@Url.Action("FinalizarCompra","Compras")" method="post">
+    <input type="submit" value="Compra">
+</form>

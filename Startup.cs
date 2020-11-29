@@ -27,6 +27,13 @@ namespace hardStore
         {
             services.AddControllersWithViews();
             services.AddDbContext<ProductosContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProductosContext")));
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +55,8 @@ namespace hardStore
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

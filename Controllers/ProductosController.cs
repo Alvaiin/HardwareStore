@@ -41,12 +41,13 @@ namespace hardStore.Controllers
             }
             return View("Index",productos.ToList());
         }
-        public IActionResult NuevoProducto(String nombre,TipoProducto tipo, String modelo,Marca marca, double precio, IFormFile Imagen)
+        //public IActionResult NuevoProducto(String nombre,TipoProducto tipo, String modelo,Marca marca, double precio, IFormFile Imagen)//, [FromBody] Producto producto )
+        public IActionResult NuevoProducto(Producto producto, IFormFile Imagen)//, [FromBody] Producto producto )
         {
             if (!Imagen.ContentType.Equals("image/jpeg")) //Si el archivo cargado no es JPEG, vuelvo con error
                 return RedirectToAction("administrarProductos");
 
-            Producto producto = new Producto { Nombre = nombre, Tipo = tipo, Modelo = modelo, Marca = marca, Precio = precio };
+            //Producto producto = new Producto { Nombre = nombre, Tipo = tipo, Modelo = modelo, Marca = marca, Precio = precio };
             db.Productos.Add(producto);
             db.SaveChanges();
             if(Imagen.Length > 0)
@@ -63,6 +64,8 @@ namespace hardStore.Controllers
             Producto producto = db.Productos.Find(IdProducto);
             db.Productos.Remove(producto);
             db.SaveChanges();
+            var path = Path.Combine(Environment.WebRootPath, "img","productos",producto.Id+".jpg");
+            System.IO.File.Delete(path);
             return RedirectToAction("administrarProductos");
         }
 
