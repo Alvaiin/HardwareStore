@@ -8,19 +8,34 @@
     <link href="@Url.Content("~/css/productos/carritoIndex.css")" rel="stylesheet" type="text/css" />
 }
 
+<div class="container">
+
 <h2>Carrito</h2>
 
-@{
-    double total = 0;
-    foreach (Producto producto in Model)
-    {
-        <h3> @producto.Nombre @producto.Modelo @producto.Marca $ @producto.Precio </h3>
-        total += producto.Precio;
+
+    <ul class="list-group">
+
+    @{
+        double total = 0;
+        for (int i = 0; i< Model.Count; i++)
+        {
+            Producto producto = Model[i];
+            <li class="list-group-item col">
+                @producto.Nombre @producto.Modelo @producto.Marca 
+            <span class="badge badge-info badge-pill">$ @producto.Precio</span>
+            <form class="float-right" action="@Url.Action("EliminarDelCarrito","Compras")" method="post">
+                <input type="hidden" name="index" value="@i">
+                <input class="btn" type="submit" value="X">
+            </form>
+            </li>
+            total += producto.Precio;
+        }
     }
-}
+    </ul>
 
-<h5>Total: $ @total</h5>
+    <h5>Total: $ @total</h5>
 
-<form action="@Url.Action("FinalizarCompra","Compras")" method="post">
-    <input type="submit" value="Compra">
-</form>
+    <form action="@Url.Action("FinalizarCompra","Compras")" method="post">
+        <input class="btn btn-secondary" type="submit" value="Comprar">
+    </form>
+</div>

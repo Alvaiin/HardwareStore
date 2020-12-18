@@ -5,22 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HardStore</title>
+    <link href="~/img/logoMod.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f756217e56.js" crossorigin="anonymous"></script>
     @RenderSection("Styles", required: false)
 </head>
 
 <body>
-    <div class="container my-2">
-        <div class="row">
-            <form class="form-inline mx-auto col-8" action="@Url.Action("BuscarProducto","Productos")" method="GET">
-                <input class="form-control mr-sm-2 w-75" type="search" placeholder="Buscar" aria-label="Buscar" name="buscado">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
-            <a href="/Compras"><i class="fas fa-shopping-cart fa-2x"></i></a>
-        </div>
-    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/"> <img src="@Url.Content("~/img/logoMod.png")" alt="Logo" style="height: 30px;"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -36,6 +30,11 @@
                     <a class="nav-link" href="#">Armar PC</a>
                 </li>
             </ul>
+            <a href="/Compras" style="color: gray"><i class="fas fa-shopping-cart fa-2x ml-1"></i></a>
+            <form class="form-inline mx-auto col-8" action="@Url.Action("BuscarProducto","Productos")" method="GET">
+                <input class="form-control mr-sm-2 w-50" type="search" placeholder="Buscar" aria-label="Buscar" name="buscado">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
         </div>
     </nav>
     <div class="container-fluid">
@@ -46,7 +45,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - hardStore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - hardStore
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

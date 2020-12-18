@@ -6,6 +6,7 @@ public enum TipoProducto{
     Memoria,
     Gabinete,
     Refrigeracion,
-    Periferico
+    Periferico,
+    Accesorio
 
 }

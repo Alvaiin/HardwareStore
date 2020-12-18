@@ -9,13 +9,17 @@
 }
 
 
-<h1>@Model.Nombre</h1>
+<div class="container">
 
-<img src='@("../img/productos/"+Model.Id+".jpg")' alt="productoFoto">
-<h4>Marca: @Model.Marca</h4>
-<h4>Modelo: @Model.Modelo</h4>
-<h4>$ @Model.Precio</h4>
-<form action="@Url.Action("AgregarAlCarrito","Compras")" method="post">
-    <input type="hidden" value="@Model.Id" name="Id">
-    <input type="submit" value="Agregar al carrito">
-</form>
+    <h1>@Model.Nombre</h1>
+    <div class="row">
+        <img class="col-4" src='@Url.Content("~/img/productos/"+Model.Id+".jpg")' alt="productoFoto">
+    </div>
+    <h4>Marca: @Model.Marca</h4>
+    <h4>Modelo: @Model.Modelo</h4>
+    <h4>$ @Model.Precio</h4>
+    <form action="@Url.Action("AgregarAlCarrito","Compras")" method="post">
+        <input type="hidden" value="@Model.Id" name="Id">
+        <input class="btn btn-secondary" type="submit" value="Agregar al carrito">
+    </form>
+</div>

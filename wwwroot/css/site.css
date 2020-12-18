@@ -3,13 +3,8 @@
   padding: 0;
 }
 
-body {
-  background: rgb(255,174,174);
-  background: linear-gradient(180deg, rgba(255,174,174,1) 3%, rgba(238,87,87,1) 32%, rgba(152,56,56,1) 61%, rgba(0,0,0,1) 100%);
-}
-
-a i{
-  color: green;
+body{
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification

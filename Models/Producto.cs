@@ -21,5 +21,10 @@ namespace hardStore.Models{
 
         public double Precio { get; set; }
 
+
+        public override string ToString()
+    {
+        return "Id: " + Id + " Producto: " +Tipo+" "+Nombre+" "+Modelo+" "+Marca+" - Precio: "+Precio;
+    }
     }
 }

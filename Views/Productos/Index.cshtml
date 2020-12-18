@@ -13,7 +13,9 @@
 }
 
 
-<h1>Productos</h1>
+
+<div class="container-fluid">
+
 <div class="row">
     <aside class="col-2 mx-4">
         <h5>Filtros</h5>
@@ -33,8 +35,9 @@
         <div class="row">
             @foreach (Producto producto in Model)
             {
-            <li class="producto col-2 m-2">
-                <a href='@("Productos/VerProducto?Id="+producto.Id)'>
+
+            <li class="producto col-xl-2 col-md-3 col-sm-4 col-6 m-2">
+                <a href='@Url.Action("VerProducto","Productos",new {id = producto.Id})'>
                     <h5>@producto.Nombre</h5>
                     <img src='@Url.Content("~/img/productos/"+producto.Id+".jpg")' alt="productoFoto">
                     <h6>$ @producto.Precio</h6>
@@ -43,4 +46,5 @@
             }
         </div>
     </ul>
+</div>
 </div>
